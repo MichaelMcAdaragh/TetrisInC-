@@ -7,11 +7,19 @@ namespace TetrisInC_
     public class Game // "Tetrix" its a "Tetris Matrix"
     {
         // Game Attributes 
-        private int _width, _height;
+        private static int _width, _height;
 
-        // Properties
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        // Properties - "static" makes these class properties that can be accesses via "Game.X"
+        public static int Width
+        {
+            get { return _width; }
+            private set { _width = value; }
+        }
+        public static int Height
+        {
+            get { return _height; }
+            private set { _height = value; }
+        }
         
         // Constructors
         public Game()    // Default Standard New Game.
@@ -26,7 +34,7 @@ namespace TetrisInC_
         }
 
         // Methods
-        public int[,] CreateMatrix()                // Returns a new game matrix
+        public int[,] NewMatrix()                // Returns a new game matrix
         {
             var matrix = new int[_width, _height];
             return matrix;
@@ -34,8 +42,11 @@ namespace TetrisInC_
 
         public void DisplayMatrix(int[,] matrix)    // Displays Current Game Matrix On Terminal
         {
+            Console.WriteLine("\n\n\n----SCORE: 00000------");
+            Console.WriteLine("----------------------");
             for (int i = 0; i < _height; i++)
             {
+                Console.Write("|");
                 for (int j = 0; j < _width; j++)
                 {
                     if (matrix[j, i] == 1)
@@ -43,8 +54,9 @@ namespace TetrisInC_
                     else //if( matrix[j,i] == 0)
                         Console.Write("  ");
                 }
-                Console.WriteLine();
+                Console.WriteLine("|");
             }
+            Console.WriteLine("----------------------");
         }
         
         // Check / Clear Completed Row
