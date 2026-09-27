@@ -4,11 +4,22 @@ using System.Text;
 
 namespace TetrisInC_
 {
+    // Block Struct
+    public struct Block
+    {
+        public int x, y;
+
+        public Block(int xCoordinate, int yCoordinate)
+        {
+            x = xCoordinate; y = yCoordinate;
+        }
+    }
+
     public class Tetramino      // Super Class of Tetraminos / Blank template for other pieces.
     {
+        
         // Attributes
-        public int[] x = new int[4];             // coord point 1
-        public int[] y = new int[4];
+        public Block[] block = new Block[4]; // Create array of blocks to contain x,y coord's
 
         public int rotationState = 0;  // Rotation state starting at 12 o'clock
 
@@ -44,19 +55,19 @@ namespace TetrisInC_
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(x[i], "left") == true)
+                        if (isValidMove(block[i].x, "left") == true)
                             validCount++;
                     }
                     if (validCount == 4)
                     {
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                            matrix[x[i], y[i]] = 0;       // turn off current point
+                            matrix[block[i].x, block[i].y] = 0;       // turn off current point
                         }
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                           x[i]--;                       // decrement x coordinates.
-                            matrix[x[i], y[i]] = 1;       // turn on new points
+                           block[i].x--;                       // decrement x coordinates.
+                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
                         }
                     }
                     Console.WriteLine($"{validCount}");
@@ -67,19 +78,19 @@ namespace TetrisInC_
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(x[i], "right") == true)
+                        if (isValidMove(block[i].x, "right") == true)
                             validCount++;
                     }
                     if (validCount == 4)                  // if all four points are valid after move
                     {
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                            matrix[x[i], y[i]] = 0;       // turn off each current point
+                            matrix[block[i].x, block[i].y] = 0;       // turn off each current point
                         }
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                            x[i]++;                       // increment x coordinates.
-                            matrix[x[i], y[i]] = 1;       // turn on new points
+                            block[i].x++;                       // increment x coordinates.
+                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
                         }
                     }
                     Console.WriteLine($"{validCount}");
@@ -90,7 +101,7 @@ namespace TetrisInC_
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(y[i], "down") == true)
+                        if (isValidMove(block[i].y, "down") == true)
                             validCount++;
                         Console.WriteLine($"{validCount}");
                     }
@@ -98,12 +109,12 @@ namespace TetrisInC_
                     {
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                            matrix[x[i], y[i]] = 0;       // turn off current point
+                            matrix[block[i].x, block[i].y] = 0;       // turn off current point
                         }
                         for (int i = 0; i < 4; i++)       // for each point
                         {
-                           y[i]++;                       // decrement y coordinates.
-                            matrix[x[i], y[i]] = 1;       // turn on new points
+                           block[i].y++;                       // decrement y coordinates.
+                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
                         }
                     }
                     Console.WriteLine($"{validCount}");

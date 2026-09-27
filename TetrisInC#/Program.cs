@@ -15,17 +15,13 @@ namespace TetrisInC_
             game.DisplayMatrix(gameMatrix);
 
 
-          //  L.Move(gameMatrix, "left");
-
-          //  game.DisplayMatrix(gameMatrix);
-
-
+            L.Move(gameMatrix, "left");
+            game.DisplayMatrix(gameMatrix);
+            
             L.Move(gameMatrix, "down");
-
             game.DisplayMatrix(gameMatrix);
 
             L.Move(gameMatrix, "right");
-
             game.DisplayMatrix(gameMatrix);
         }
     }

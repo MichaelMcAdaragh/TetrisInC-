@@ -14,15 +14,16 @@ namespace TetrisInC_.Tetramino_Classes
         //Constructor
         public L_Piece(int[,] matrix)
         {
-            x[0] = 4; y[0] = 0;
-            x[1] = 4; y[1] = 1;
-            x[2] = 4; y[2] = 2;
-            x[3] = 5; y[3] = 2;
+           
+            block[0].x = 4; block[0].y = 0;
+            block[1].x = 4; block[1].y = 1;
+            block[2].x = 4; block[2].y = 2;
+            block[3].x = 5; block[3].y = 2;
 
-            matrix[x[0], y[0]] = 1;
-            matrix[x[1], y[1]] = 1;
-            matrix[x[2], y[2]] = 1;
-            matrix[x[3], y[3]] = 1;
+            matrix[block[0].x, block[0].y] = 1;
+            matrix[block[1].x, block[1].y] = 1;
+            matrix[block[2].x, block[2].y] = 1;
+            matrix[block[3].x, block[3].y] = 1;
         }
 
         // Inherits "Move Method" from Tetramino class
