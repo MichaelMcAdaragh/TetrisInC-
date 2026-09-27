@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var game = new Game();
+            int[,] gameMatrix = game.CreateMatrix();
+            game.DisplayMatrix(gameMatrix);
+
         }
     }
 }
