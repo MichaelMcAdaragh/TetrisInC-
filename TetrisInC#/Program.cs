@@ -9,11 +9,8 @@ namespace TetrisInC_
             var game = new Game();                  // Initialize game
 
             int[,] gameMatrix = game.NewMatrix();   // Create new game matrix
-
             var L = new L_Piece(gameMatrix);
-
             game.DisplayMatrix(gameMatrix);
-
 
             L.Move(gameMatrix, "left");
             game.DisplayMatrix(gameMatrix);

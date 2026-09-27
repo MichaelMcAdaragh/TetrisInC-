@@ -8,11 +8,6 @@ namespace TetrisInC_
     public struct Block
     {
         public int x, y;
-
-        public Block(int xCoordinate, int yCoordinate)
-        {
-            x = xCoordinate; y = yCoordinate;
-        }
     }
 
     public class Tetramino      // Super Class of Tetraminos / Blank template for other pieces.
@@ -25,7 +20,7 @@ namespace TetrisInC_
 
 
         // Methods
-        public bool isValidMove(int coordinate, string direction)
+        public bool isValidMove(string direction, int coordinate)
         {
             bool inBounds = true;                                       // Defaults to true.
 
@@ -45,83 +40,85 @@ namespace TetrisInC_
             return inBounds;
         }
 
-        public void Move(int[,] matrix, string direction)
+        public void Move(int[,] matrix, string direction)      // MOVE FUNCTION
         {
             int validCount;
             switch (direction)
             {
-                case "left":
+                case "left":                                   // LEFT
 
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(block[i].x, "left") == true)
+                        if (isValidMove("left", block[i].x) == true)
                             validCount++;
                     }
-                    if (validCount == 4)
+                    if (validCount == 4)                    // if all four points are valid after move
                     {
-                        for (int i = 0; i < 4; i++)       // for each point
+                        for (int i = 0; i < 4; i++)                     // for each block
                         {
-                            matrix[block[i].x, block[i].y] = 0;       // turn off current point
+                            matrix[block[i].x, block[i].y] = 0;         // turn off current block
                         }
-                        for (int i = 0; i < 4; i++)       // for each point
+                        for (int i = 0; i < 4; i++)                     // for each point
                         {
-                           block[i].x--;                       // decrement x coordinates.
-                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
+                           block[i].x--;                                // decrement x coordinates.
+                            matrix[block[i].x, block[i].y] = 1;         // turn on new blocks
                         }
                     }
                     Console.WriteLine($"{validCount}");
                     break;
                     
-                case "right":
+                case "right":                                   // RIGHT
 
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(block[i].x, "right") == true)
+                        if (isValidMove("right", block[i].x) == true)
                             validCount++;
                     }
-                    if (validCount == 4)                  // if all four points are valid after move
+                    if (validCount == 4)                       // if all four points are valid after move
                     {
-                        for (int i = 0; i < 4; i++)       // for each point
+                        for (int i = 0; i < 4; i++)                     // for each block
                         {
-                            matrix[block[i].x, block[i].y] = 0;       // turn off each current point
+                            matrix[block[i].x, block[i].y] = 0;         // turn off each current block
                         }
-                        for (int i = 0; i < 4; i++)       // for each point
+                        for (int i = 0; i < 4; i++)                     // for each block
                         {
-                            block[i].x++;                       // increment x coordinates.
-                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
+                            block[i].x++;                               // increment x coordinates.
+                            matrix[block[i].x, block[i].y] = 1;         // turn on new blocks
                         }
                     }
                     Console.WriteLine($"{validCount}");
                     break;
 
-                case "down":
+                case "down":                                    // DOWN
 
                     validCount = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        if (isValidMove(block[i].y, "down") == true)
+                        if (isValidMove("down", block[i].y) == true)
                             validCount++;
                         Console.WriteLine($"{validCount}");
                     }
-                    if (validCount == 4)
+                    if (validCount == 4)                        // if all four points are valid after move
                     {
-                        for (int i = 0; i < 4; i++)       // for each point
+                        
+                        for (int i = 0; i < 4; i++)                   // for each block
                         {
-                            matrix[block[i].x, block[i].y] = 0;       // turn off current point
+                            matrix[block[i].x, block[i].y] = 0;       // turn off current block locations
                         }
-                        for (int i = 0; i < 4; i++)       // for each point
+                        for (int i = 0; i < 4; i++)                   // for each block
                         {
-                           block[i].y++;                       // decrement y coordinates.
-                            matrix[block[i].x, block[i].y] = 1;       // turn on new points
+                            block[i].y++;                              // decrement y coordinates.
+                            matrix[block[i].x, block[i].y] = 1;       // turn on new blocks locations
                         }
                     }
-                    Console.WriteLine($"{validCount}");
-                    break;
+                        Console.WriteLine($"{validCount}");
+                        break;
 
-                default:
+                        default:
                     throw new Exception("Move Method: Invalid Direction String.");
+                
             }
         }
     }

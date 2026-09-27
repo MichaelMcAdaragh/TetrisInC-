@@ -14,7 +14,6 @@ namespace TetrisInC_.Tetramino_Classes
         //Constructor
         public L_Piece(int[,] matrix)
         {
-           
             block[0].x = 4; block[0].y = 0;
             block[1].x = 4; block[1].y = 1;
             block[2].x = 4; block[2].y = 2;
@@ -27,6 +26,7 @@ namespace TetrisInC_.Tetramino_Classes
         }
 
         // Inherits "Move Method" from Tetramino class
-              
+        
+        // Rotate
     }
 }
